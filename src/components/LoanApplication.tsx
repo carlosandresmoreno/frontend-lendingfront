@@ -40,7 +40,6 @@ const LoanApplication: React.FC = () => {
         customClass: {
           popup: 'swal-popup',
           title: 'swal-title',
-          text: 'swal-text',
         },
       }).then(() => {
         setFormData({ taxId: '', businessName: '', requestedAmount: '' });
