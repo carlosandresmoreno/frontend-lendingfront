@@ -10,6 +10,18 @@ const LoanApplication: React.FC = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
+  // Función para manejar el cambio en los campos del formulario
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === 'requestedAmount') {
+      // Permite solo dígitos
+      const numericValue = value.replace(/[^0-9]/g, '');
+      setFormData({ ...formData, [name]: numericValue });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
   // Función para manejar el envío del formulario
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +48,7 @@ const LoanApplication: React.FC = () => {
         confirmButtonText: 'Ok',
         background: '#1e1e1e',
         color: '#fff',
-        confirmButtonColor: '#4CAF50', 
+        confirmButtonColor: '#4CAF50',
         customClass: {
           popup: 'swal-popup',
           title: 'swal-title',
@@ -62,7 +74,7 @@ const LoanApplication: React.FC = () => {
             id="taxId"
             name="taxId"
             value={formData.taxId}
-            onChange={(e) => setFormData({ ...formData, taxId: e.target.value })}
+            onChange={handleInputChange}
             className="w-full p-3 bg-gray-700 text-white rounded-md border-2 border-gray-600 focus:outline-none focus:border-blue-600 transition-colors"
             required
           />
@@ -74,7 +86,7 @@ const LoanApplication: React.FC = () => {
             id="businessName"
             name="businessName"
             value={formData.businessName}
-            onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+            onChange={handleInputChange}
             className="w-full p-3 bg-gray-700 text-white rounded-md border-2 border-gray-600 focus:outline-none focus:border-blue-600 transition-colors"
             required
           />
@@ -82,11 +94,11 @@ const LoanApplication: React.FC = () => {
         <div className="mb-8">
           <label htmlFor="requestedAmount" className="block text-sm font-medium text-gray-300">Requested Amount</label>
           <input
-            type="number"
+            type="number" 
             id="requestedAmount"
             name="requestedAmount"
             value={formData.requestedAmount}
-            onChange={(e) => setFormData({ ...formData, requestedAmount: e.target.value })}
+            onChange={handleInputChange}
             className="w-full p-3 bg-gray-700 text-white rounded-md border-2 border-gray-600 focus:outline-none focus:border-blue-600 transition-colors"
             required
           />
