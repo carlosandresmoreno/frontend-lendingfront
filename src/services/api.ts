@@ -1,6 +1,6 @@
 export const getLoanDecision = async (data: { requested_amount: number }) => {
     try {
-      const response = await fetch('http://ec2-44-233-162-24.us-west-2.compute.amazonaws.com:5100/api/loans/evaluate', {
+      const response = await fetch('https://projects.bork.cl/leanding/api/loans/evaluate', {
         method: 'POST',
         body: JSON.stringify({ requested_amount: data.requested_amount }), // Cambia a snake_case
         headers: {
